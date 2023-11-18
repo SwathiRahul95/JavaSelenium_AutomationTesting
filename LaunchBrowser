@@ -1,0 +1,22 @@
+//1. Open URL
+//2. Browser Navigation
+//3. Print title
+//4. Close browser
+
+package Practice001;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LaunchBrowser {
+public static void main(String[] args) {
+	ChromeDriver driver = new ChromeDriver();
+	driver.get("https://practicesoftwaretesting.com/#/");
+    String title1 = driver.getTitle(); //To get the title
+    System.out.println(title1); //Print the title
+    driver.manage().window().minimize(); //Minimize the window
+    driver.manage().window().setSize(new Dimension(200,400)); //Specifying dimension for the window
+    driver.navigate().refresh(); //To refresh the page
+    driver.manage().window().maximize(); //Maximize the window
+    //driver.navigate().forward(); //Move forward
+    //driver.navigate().backward(); //Move backward
+    driver.quit(); //Close the browser
