@@ -1,0 +1,29 @@
+//1. Load the URL
+//2. Click the 1st product using locators
+//3. Add to cart using locators
+//4. Pirnt the total amount displaying in cart
+
+
+package Practice001;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Locators {
+	public static void main(String[] args) throws InterruptedException {
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://practicesoftwaretesting.com/#/");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//img[@class='card-img-top']")).click();
+		driver.manage().window().maximize();
+		Thread.sleep(30);
+		driver.findElement(By.id("btn-add-to-cart")).click();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.findElement(By.id("lblCartCount")).click();
+		String text = driver.findElement(By.xpath("(//td[@class='col-md-2 text-end'])[4]")).getText();
+		System.out.println("Final total" + text);
+						
+	}
+
+}
