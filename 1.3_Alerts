@@ -1,0 +1,34 @@
+//1. Load the URL
+//2. Simple alert 
+//3. Accept , dismiss (Prompt) alert
+//3. Get text and send keys in alert
+//4. Quit the browser
+
+package Practice001;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class alerts {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/alert");
+		driver.findElement(By.id("accept")).click();
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("confirm")).click();
+		driver.switchTo().alert().dismiss();
+		driver.findElement(By.id("prompt")).click();
+		Alert alert = driver.switchTo().alert();
+		alert.sendKeys("SwathiChidambaram");
+		System.out.println(alert.getText());
+	    alert.accept();
+	    driver.quit();
+	    
+		
+	}
+
+}
