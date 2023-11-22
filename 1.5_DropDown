@@ -1,0 +1,34 @@
+//1. Load the URL
+//2. Maximize the window
+//3. Create selec object
+//4. Select drop down using visible text
+//5. Select drop down using index
+//6. Select drop down using value
+//7. Select drop down using send keys
+
+package Practice001;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Dropdown {
+public static void main(String[] args) throws InterruptedException {
+	ChromeDriver driver=new ChromeDriver();
+	driver.get("https://letcode.in/dropdowns");
+	driver.manage().window().maximize();
+	WebElement fruits = driver.findElement(By.id("fruits"));
+	Select select = new Select(fruits);
+	select.selectByValue("2");
+	Thread.sleep(50);
+	select.selectByIndex(4);
+	Thread.sleep(20);
+	select.selectByVisibleText("Orange");
+	Thread.sleep(60);
+	fruits.sendKeys("Apple");
+	List <WebElement> Options = select.getOptions();
+    System.out.println(Options.size());
+    driver.quit();
+}
+}
