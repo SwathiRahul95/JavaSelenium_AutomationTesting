@@ -1,0 +1,26 @@
+//1. Load the URL
+//2. Switch to frame using index
+//3. Switch to next frame using default content
+// Can also use parent frame and frame value to navigate to other frame
+
+package Practice001;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Frames {
+public static void main(String[] args) throws InterruptedException {
+	ChromeDriver driver = new ChromeDriver();
+	driver.get("https://letcode.in/frame");
+	driver.manage().window().maximize();
+	driver.switchTo().frame(0);
+	driver.findElement(By.name("fname")).sendKeys("Swathic");
+	driver.findElement(By.name("lname")).sendKeys("Rahul");
+	driver.switchTo().frame(1);
+	Thread.sleep(100);
+	driver.findElement(By.name("email")).sendKeys("Swathi");
+	driver.switchTo().defaultContent();
+	driver.findElement(By.linkText("Watch tutorial")).click();
+	driver.quit();
+	
+}
+}
