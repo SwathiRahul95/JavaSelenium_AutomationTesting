@@ -1,0 +1,47 @@
+//1. Get the URL
+//2. Get all links 'a'
+//3. Get the count of total links in the webpage
+//4. Get attribute using href
+//5. 
+
+package Practice001;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BrokenLinks {
+public static void main(String[] args) throws IOException {
+	ChromeDriver driver = new ChromeDriver();
+	driver.get("https://practicesoftwaretesting.com/#/");
+	List <WebElement> AllURLs= driver.findElements(By.tagName("a"));
+	System.out.println("Count of URLs in the webpage : "+AllURLs.size());
+	for (WebElement urls : AllURLs) {
+		String hrefLinks = urls.getAttribute("href");
+		
+		URL url = new URL(hrefLinks);
+		URLConnection urlconnection = url.openConnection();
+		HttpURLConnection httpURLConnection=(HttpURLConnection)urlconnection;
+		httpURLConnection.connect();
+		if(httpURLConnection.getResponseCode()==200)
+		{
+			System.out.println(hrefLinks + "-" + httpURLConnection.getResponseCode()+ "-" 
+		+httpURLConnection.getResponseMessage());
+			
+		}
+		else 
+		{System.out.println(hrefLinks + "-" + httpURLConnection.getResponseCode()+ "-" 
+				+httpURLConnection.getResponseMessage());
+		
+	}
+		httpURLConnection.disconnect();
+	
+} driver.quit();
+}}
+
