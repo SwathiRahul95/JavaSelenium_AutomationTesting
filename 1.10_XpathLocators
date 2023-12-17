@@ -1,0 +1,39 @@
+//1. Locators - Absolute and Relative Xpath
+//2. Relatvie xpath - Basic locators and Structure Based
+//3. Xpath Basic and Advanced - Contains, Starts-with, Conditional , Text, position, Last, Axes (Advanced)
+
+
+package Practice001;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class xpathPractice {
+	public static void main(String[] args) throws InterruptedException {
+
+
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("https://ultimateqa.com/automation/");
+		Thread.sleep(2000);
+		//1. Selenium locators basic types : ID, ClassName, Name, TagName, LinkText, Partial LinkText
+		driver.findElement(By.linkText("Java SDET Academy")).click();
+		driver.navigate().back();
+		Thread.sleep(2000);
+		//2. Basic Xpath Locators : text
+		driver.findElement(By.xpath("//a[text()='Success Stories']")).click();
+		Thread.sleep(2000);
+		driver.navigate().back();
+		Thread.sleep(2000);
+		//3. Xpath Locators : Contains
+		driver.findElement(By.xpath("//a[contains(text(),'DISCOVERY SESSION')]")).click();
+		driver.navigate().back();
+		Thread.sleep(2000);
+		//4. Xapth locators : Starts-with
+		driver.findElement(By.xpath("//a[starts-with(@href,'https://ultimateqa.com/blog/')]")).click();
+		driver.navigate().back();
+		Thread.sleep(2000);
+		//5. Xpath axes : following, preceeding, child, parent, ancestor, descendent
+		int links = driver.findElements(By.xpath("//a//ancestor::body//a")).size();
+		System.out.println("Total number of links " +links);
+		driver.close();
+	}}
